@@ -50,24 +50,25 @@ Users authenticate using **Google OAuth only**, create private bookmarks, and se
 
 # 📁 Project Folder Structure
 
+```bash
 app/
 │
 ├── auth/
-│ └── callback/
-│ └── route.ts
+│   └── callback/
+│       └── route.ts
 │
 ├── list-bookmarks/
-│ ├── BookmarkSelection.tsx
-│ └── page.tsx
+│   ├── BookmarkSelection.tsx
+│   └── page.tsx
 │
 ├── login/
-│ └── page.tsx
+│   └── page.tsx
 │
 ├── components/
-│ └── ui/
-│ ├── BookmarkList.tsx
-│ ├── Input.tsx
-│ └── Navbar.tsx
+│   └── ui/
+│       ├── BookmarkList.tsx
+│       ├── Input.tsx
+│       └── Navbar.tsx
 │
 ├── Form.tsx
 ├── layout.tsx
@@ -78,12 +79,14 @@ app/
 lib/
 │
 ├── supabase/
-│ ├── client.ts
-│ ├── server.ts
-│ └── proxy.ts
+│   ├── client.ts
+│   ├── server.ts
+│   └── proxy.ts
 │
 ├── auth.ts
 └── utils.ts
+```
+
 
 
 ---
