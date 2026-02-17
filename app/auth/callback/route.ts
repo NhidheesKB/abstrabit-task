@@ -4,10 +4,10 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-
+  console.log("reques",requestUrl)
   if (code) {
     const supabase =await createClient();
     await supabase.auth.exchangeCodeForSession(code)
   }
- return NextResponse.redirect(new URL("/", request.url));
+ return NextResponse.redirect(new URL("/list-bookmarks", request.url));
 }

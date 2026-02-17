@@ -20,7 +20,7 @@ export default function BookmarkList({
 }) {
     const [bookmarks, setBookmarks] =
         useState<Bookmark[]>(initialBookmarks);
-    const [deletingId, setDeletingId] = useState<string | null>(null);
+
     const supabase = createClient();
 
     useEffect(() => {
@@ -66,23 +66,6 @@ export default function BookmarkList({
     }, [userId]);
 
 
-    const handleDelete = async (id: string) => {
-        if (!confirm("Are you sure you want to delete this bookmark?")) return;
-
-        setDeletingId(id);
-
-        const { error } = await supabase
-            .from("bookmarks")
-            .delete()
-            .eq("id", id);
-
-        if (error) {
-            console.error(error.message);
-        }
-
-        setDeletingId(null);
-    };
-
 
     if (bookmarks.length === 0) {
         return (
@@ -97,41 +80,25 @@ export default function BookmarkList({
             {bookmarks.map((bookmark) => (
                 <div
                     key={bookmark.id}
-                    className="bg-white grid grid-cols-1 gap-2 rounded-2xl shadow-md p-6 hover:shadow-lg transition"
+                    className="bg-white grid grid-cols-1 gap-1 rounded-2xl shadow-md p-6 hover:shadow-lg transition"
                 >
-                    <div className="flex justify-between items-start">
-                        <h3 className="text-lg font-semibold text-gray-800 truncate">
-                            {bookmark.title}
-                        </h3>
-
-                        <button
-                            onClick={() => handleDelete(bookmark.id)}
-                            disabled={deletingId === bookmark.id}
-                            className=" text-white  w-20   h-8  bg-red-500   text-sm    rounded-md    transition-all     duration-300    hover:bg-red-600     hover:scale-105   active:scale-95    disabled:opacity-50     disabled:cursor-not-allowed  "
-                        >
-                            {deletingId === bookmark.id ? "..." : "Delete"}
-                        </button>
-
-                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2 truncate">
+                        {bookmark.title}
+                    </h3>
 
                     <a
                         href={bookmark.url}
                         target="_blank"
-                        rel="noopener noreferrer"
                         className="text-blue-600 text-sm break-words hover:underline"
                     >
                         {bookmark.url}
                     </a>
 
-                    <time
-                        className="text-xs text-gray-400"
-                        suppressHydrationWarning
-                    >
-                        Added{" "}
+                    <time className=" text-xs text-gray-400" suppressHydrationWarning>
+                        Added
                         {new Date(bookmark.created_at).toLocaleDateString()}
                     </time>
                 </div>
-
             ))}
         </div>
     );
