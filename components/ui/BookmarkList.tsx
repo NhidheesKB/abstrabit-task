@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-type Bookmark = {
+export type Bookmark = {
     id: string;
     title: string;
     url: string;
