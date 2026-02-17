@@ -36,7 +36,7 @@ export default function BookmarkList({
                 },
                 (payload: any) => {
                     const newBookmark = payload.new as Bookmark;
-
+                    console.log("ReltimePayload",payload)
                     switch (payload.eventType) {
                         case "INSERT":
                             setBookmarks((prev) => [newBookmark, ...prev]);

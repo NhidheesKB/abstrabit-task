@@ -13,9 +13,7 @@ export default async function FormHandller() {
   }
   async function addBookmark(formData: FormData) {
     "use server";
-
     const supabase = await createClient();
-
     const {
       data: { user },
     } = await supabase.auth.getUser();
